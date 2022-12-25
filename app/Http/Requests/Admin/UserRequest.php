@@ -23,12 +23,37 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+
+        return[
             'name'      => 'required|min:3|max:50',
-            'email'     => 'required|email|unique:users',
             'notes'     => '',
             'dob'       => 'required|date',
+        ] + ($this->isMethod('POST') ? $this->store() : $this->update() );;
+       
+    }
+
+    /**
+     * Edit validation wording
+    */
+    public function messages()
+    {
+        return [
+            'name.min' => 'Minimal is 3 characters'
+        ];
+    }
+
+    private function store(){
+        return [
+            'email'     => 'required|email|unique:users',
             'password'  => 'required|confirmed|min:6',
         ];
     }
+
+    private function update(){
+        return [
+            'email'     => 'required|email|unique:users,email,'.$this->user()->email,
+            'password'  => 'required|confirmed|min:6',
+        ];
+    }
+
 }

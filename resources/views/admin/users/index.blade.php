@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="container mt-4 mb-5">
+    <div class="container mt-3 mb-5">
         
         {{-- header --}}
         <div class="row justify-content-center">
@@ -25,8 +25,15 @@
         <div class="row justify-content-center">
             <div class="col-12 col-md-8 col-lg-10">
                 @if (session('success'))
-                    <div class="text-success mb-1">{{ session('success') }}</div>
+                    <div class="text-success mb-1 float-start">{{ session('success') }}</div>
                 @endif
+                <div class="float-end">
+                    {{ $users->total() }}
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-10">
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover table-striped">
                         <tr>
