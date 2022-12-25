@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\View;
 
 class UserController extends Controller
@@ -19,7 +21,9 @@ class UserController extends Controller
      */
     public function index(){
         $data['title'] = 'Users Index';
-        $data['users'] = [];
+        $data['users'] = User::latest()
+            -> paginate(10)
+            -> onEachSide(1);
 
         return view('admin.users.index', $data);
     }
@@ -41,17 +45,19 @@ class UserController extends Controller
      * @param   Request
      * @return  Response
     */
-    public function store(Request $request){
-        
+    public function store(UserRequest $request){
+
+        // store data
         $User = User::create([
             'name'      => $request->name,
             'email'     => $request->email,
             'notes'     => $request->notes,
             'dob'       => $request->dob,
-            'password'  => $request->password
+            'password'  => Hash::make($request->password)
         ])->id;
 
-        return redirect()->route('users.edit', $User)->with('success', 'New user added !');
+        // return redirect()->route('users.edit', $User)->with('success', 'New user added !');
+        return redirect()->route('users.index')->with('success', 'New user added');
 
     }
 
