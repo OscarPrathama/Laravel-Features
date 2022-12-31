@@ -3,6 +3,8 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Hash;
 
 class UserRequest extends FormRequest
 {
@@ -28,7 +30,7 @@ class UserRequest extends FormRequest
             'name'      => 'required|min:3|max:50',
             'notes'     => '',
             'dob'       => 'required|date',
-        ] + ($this->isMethod('POST') ? $this->store() : $this->update() );;
+        ] + ($this->isMethod('POST') ? $this->store() : $this->update() );
        
     }
 
@@ -50,9 +52,15 @@ class UserRequest extends FormRequest
     }
 
     private function update(){
+        $request = request();
+
+        $password = $request->password === null ? 'same:password_confirmation' : 'required|confirmed|min:6';
+
+        // dd($request->password);
+
         return [
-            'email'     => 'required|email|unique:users,email,'.$this->user()->email,
-            'password'  => 'required|confirmed|min:6',
+            'email'     => 'required|email|unique:users,email,'.request()->id,
+            'password'  => $password,
         ];
     }
 

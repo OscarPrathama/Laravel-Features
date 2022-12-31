@@ -23,6 +23,9 @@
                 @csrf
                 @method("PATCH")
                 
+                {{-- id --}}
+                <input type="hidden" name="id" value="{{ $user->id }}">
+
                 {{-- name --}}
                 <div class="mb-3">
                     <input type="text" name="name" value="{{ $user->name ?? old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="John Doe">

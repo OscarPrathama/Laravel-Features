@@ -79,7 +79,7 @@ class UserController extends Controller
      * @param   int         $id
      * @return  Response
     */
-    public function update(Request $request, int $id){
+    public function update(UserRequest $request, int $id){
 
         $user = User::findOrFail($id);
         
@@ -101,7 +101,10 @@ class UserController extends Controller
      * @return  void
     */
     public function destroy(int $id){
-        return null;
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('users.index')->with('success', 'User deleted!');
     }
 
 }

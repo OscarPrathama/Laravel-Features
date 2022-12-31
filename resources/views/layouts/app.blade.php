@@ -14,7 +14,8 @@
     @yield('content')
 
     {{-- footer --}}
-
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('vendor/jquery/jquery.js') }}"></script>
+    @stack('script')
 </body>
 </html>

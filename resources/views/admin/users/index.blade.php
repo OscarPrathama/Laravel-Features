@@ -28,7 +28,7 @@
                     <div class="text-success mb-1 float-start">{{ session('success') }}</div>
                 @endif
                 <div class="float-end">
-                    {{ $users->total() }}
+                    {{ $users->total() }} users
                 </div>
             </div>
         </div>
@@ -51,8 +51,13 @@
                                     <td>{{ $user->dob }}</td>
                                     <td>{{ $user->notes }}</td>
                                     <td>
-                                        <a href="{{ route("users.edit", ["id" => $user->id]) }}" class="text-decoration-none me-2">Edit</a>
-                                        <a href="#" class="text-decoration-none">Delete</a>
+                                        <a href="{{ route("users.edit", ["id" => $user->id ]) }}" class="text-decoration-none me-2">Edit</a>
+                                        
+                                        <form action="{{ route("users.delete", ['id' => $user->id ]) }}" method="post" class="d-inline">
+                                            @csrf
+                                            @method('delete')
+                                            <a href="javascript:void(0)" class="text-decoration-none delete-post">Delete</a>    
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
@@ -72,3 +77,15 @@
         
     </div>
 @endsection
+
+@push('script')
+    <script>
+        $(function(){
+            $('a.delete-post').on('click', function(){
+                if(confirm('Delete it ?')){
+                    $(this).parents('form').submit();
+                }
+            });
+        })
+    </script>
+@endpush
