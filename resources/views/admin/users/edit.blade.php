@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ $title ?? "Default" }}
+    {{ $title ?? "Edit User" }}
 @endsection
 
 @section('content')
@@ -10,7 +10,7 @@
     {{-- heading --}}
     <div class="row justify-content-center">
         <div class="col-12 div col-md-6 col-lg-4 mb-3">
-            <h3>Add user</h3>
+            <h3>Edit user</h3>
             <a href="{{ route("users.index") }}" class="text-decoration-none">Back to users</a>
         </div>
     </div>
@@ -18,43 +18,47 @@
 
     <div class="row justify-content-center">
         <div class="col-12 div col-md-6 col-lg-4">
-            <form action="{{ route("users.store") }}" method="post">
+            <form action="{{ route("users.update", ['id' => $user->id]) }}" method="POST">
                 
                 @csrf
+                @method("PATCH")
                 
+                {{-- id --}}
+                <input type="hidden" name="id" value="{{ $user->id }}">
+
                 {{-- name --}}
                 <div class="mb-3">
-                    <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="John Doe">
+                    <input type="text" name="name" value="{{ $user->name ?? old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="John Doe">
                     @error('name')<small class="invalid-feedback">{{ $message }}</small> @enderror
                 </div>
 
                 {{-- email --}}
                 <div class="mb-3">
-                    <input type="email" name="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" placeholder="john@gmail.com">
+                    <input type="email" name="email" value="{{ $user->email ?? old('email') }}" class="form-control @error('email') is-invalid @enderror" placeholder="john@gmail.com">
                     @error('email')<small class="invalid-feedback">{{ $message }}</small> @enderror
                 </div>
 
                 {{-- dob --}}
                 <div class="mb-3">
-                    <input type="date" name="dob" value="{{ old('dob') }}" class="form-control @error('dob') is-invalid @enderror">
+                    <input type="date" name="dob" value="{{ $user->dob ?? old('dob') }}" class="form-control @error('dob') is-invalid @enderror">
                     @error('dob')<small class="invalid-feedback">{{ $message }}</small> @enderror
                 </div>
 
                 {{-- notes --}}
                 <div class="mb-3">
-                    <textarea name="notes" class="form-control @error('notes') is-invalid @enderror" cols="30" rows="4" placeholder="message">{{ old('notes') }}</textarea>
+                    <textarea name="notes" class="form-control @error('notes') is-invalid @enderror" cols="30" rows="4" placeholder="message">{{ $user->notes ?? old('notes') }}</textarea>
                     @error('notes')<small class="invalid-feedback">{{ $message }}</small> @enderror
                 </div>
 
                 {{-- password --}}
                 <div class="mb-3">
-                    <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="password">
+                    <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="new password">
                     @error('password')<small class="invalid-feedback">{{ $message }}</small> @enderror
                 </div>
 
                 {{-- password --}}
                 <div class="mb-3">
-                    <input type="password" name="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror" placeholder="confirm password">
+                    <input type="password" name="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror" placeholder="confirm new password">
                     @error('password_confirmation')<small class="invalid-feedback">{{ $message }}</small> @enderror
                 </div>
 

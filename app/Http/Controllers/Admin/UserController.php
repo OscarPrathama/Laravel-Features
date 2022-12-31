@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\View;
 
 class UserController extends Controller
@@ -19,7 +21,9 @@ class UserController extends Controller
      */
     public function index(){
         $data['title'] = 'Users Index';
-        $data['users'] = [];
+        $data['users'] = User::latest()
+            -> paginate(10)
+            -> onEachSide(1);
 
         return view('admin.users.index', $data);
     }
@@ -41,17 +45,18 @@ class UserController extends Controller
      * @param   Request
      * @return  Response
     */
-    public function store(Request $request){
-        
-        $User = User::create([
+    public function store(UserRequest $request){
+
+        // store data
+        $new_user_id = User::create([
             'name'      => $request->name,
             'email'     => $request->email,
             'notes'     => $request->notes,
             'dob'       => $request->dob,
-            'password'  => $request->password
+            'password'  => Hash::make($request->password)
         ])->id;
 
-        return redirect()->route('users.edit', $User)->with('success', 'New user added !');
+        return redirect()->route('users.edit', $new_user_id)->with('success', 'New user added !');
 
     }
 
@@ -62,7 +67,9 @@ class UserController extends Controller
      * @return  View
     */
     public function edit(int $id){
+        $data['user'] = User::findOrFail($id);
 
+        return view('admin.users.edit', $data);
     }
 
     /**
@@ -72,8 +79,19 @@ class UserController extends Controller
      * @param   int         $id
      * @return  Response
     */
-    public function update(Request $request, int $id){
-        return null;
+    public function update(UserRequest $request, int $id){
+
+        $user = User::findOrFail($id);
+        
+        $user->update([
+            'name'      => $request->name,
+            'email'     => $request->email,
+            'notes'     => $request->notes,
+            'dob'       => $request->dob,
+            'password'  => Hash::make($request->password)
+        ]);
+
+        return redirect()->route('users.edit', $id)->with('success', 'User updated !');
     }
 
     /**
@@ -83,7 +101,10 @@ class UserController extends Controller
      * @return  void
     */
     public function destroy(int $id){
-        return null;
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('users.index')->with('success', 'User deleted!');
     }
 
 }
