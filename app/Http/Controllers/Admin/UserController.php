@@ -48,7 +48,7 @@ class UserController extends Controller
     public function store(UserRequest $request){
 
         // store data
-        $User = User::create([
+        $new_user_id = User::create([
             'name'      => $request->name,
             'email'     => $request->email,
             'notes'     => $request->notes,
@@ -56,8 +56,7 @@ class UserController extends Controller
             'password'  => Hash::make($request->password)
         ])->id;
 
-        // return redirect()->route('users.edit', $User)->with('success', 'New user added !');
-        return redirect()->route('users.index')->with('success', 'New user added');
+        return redirect()->route('users.edit', $new_user_id)->with('success', 'New user added !');
 
     }
 
@@ -68,7 +67,9 @@ class UserController extends Controller
      * @return  View
     */
     public function edit(int $id){
+        $data['user'] = User::findOrFail($id);
 
+        return view('admin.users.edit', $data);
     }
 
     /**
@@ -79,7 +80,18 @@ class UserController extends Controller
      * @return  Response
     */
     public function update(Request $request, int $id){
-        return null;
+
+        $user = User::findOrFail($id);
+        
+        $user->update([
+            'name'      => $request->name,
+            'email'     => $request->email,
+            'notes'     => $request->notes,
+            'dob'       => $request->dob,
+            'password'  => Hash::make($request->password)
+        ]);
+
+        return redirect()->route('users.edit', $id)->with('success', 'User updated !');
     }
 
     /**

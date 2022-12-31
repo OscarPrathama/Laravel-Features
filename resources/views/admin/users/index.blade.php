@@ -51,7 +51,7 @@
                                     <td>{{ $user->dob }}</td>
                                     <td>{{ $user->notes }}</td>
                                     <td>
-                                        <a href="#" class="text-decoration-none me-2">Edit</a>
+                                        <a href="{{ route("users.edit", ["id" => $user->id]) }}" class="text-decoration-none me-2">Edit</a>
                                         <a href="#" class="text-decoration-none">Delete</a>
                                     </td>
                                 </tr>
