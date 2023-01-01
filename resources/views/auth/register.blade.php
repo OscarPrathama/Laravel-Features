@@ -1,9 +1,9 @@
 @extends('layouts.guest')
 
 @section('content')
-    <div class="container login-wrapper my-5 p-3 mb-2">
+    <div class="container register-wrapper my-5 p-3 mb-2">
         <div class="row justify-content-center">
-            <div class="login-col col-10 col-md-4 col-lg-4">
+            <div class="register-col col-10 col-md-4 col-lg-4">
 
                 {{-- heading --}}
                 <h1 class="text-center mb-5">Register</h1>
