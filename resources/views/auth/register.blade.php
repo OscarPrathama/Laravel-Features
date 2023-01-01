@@ -31,7 +31,7 @@
 
                     {{-- password --}}
                     <div class="mb-3">
-                        <input type="password" name="password" value="{{ old('password') }}" class="form-control @error('password') is-invalid @enderror" placeholder="password"  autocomplete="current-password">
+                        <input type="password" name="password" value="{{ old('password') }}" class="form-control @error('password') is-invalid @enderror" placeholder="password"  autocomplete="new-password">
                         <div class="invalid-feedback">
                             @error('password') {{ $message }} @enderror
                         </div>
