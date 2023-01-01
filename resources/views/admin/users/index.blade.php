@@ -10,6 +10,7 @@
         <div class="row">
             <div class="col">
                 <h1 class="h2">Users Management</h1>
+                <div class="border-bottom mt-3"></div>
             </div>
         </div>
     </div>
