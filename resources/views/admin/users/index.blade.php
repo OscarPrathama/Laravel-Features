@@ -14,7 +14,6 @@
         </div>
     </div>
 
-
     <div class="container mt-3 mb-5">
         
         {{-- action --}}
@@ -39,7 +38,7 @@
             <div class="col-12 col-md-12">
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover table-striped">
-                        <tr>
+                        <tr class="fw-bold text-center">
                             <td>Name</td>
                             <td>Email</td>
                             <td>Role</td>
