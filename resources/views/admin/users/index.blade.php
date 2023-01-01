@@ -20,7 +20,7 @@
         {{-- action --}}
         <div class="row justify-content-center">
             <div class="col-12 col-md-12 mb-2">
-                <a href="{{ route("users.create") }}" class="btn btn-primary">{{ __('Add new') }}</a>
+                <a href="{{ route('admin.users.create') }}" class="btn btn-primary">{{ __('Add new') }}</a>
             </div>
         </div>
 
@@ -42,6 +42,7 @@
                         <tr>
                             <td>Name</td>
                             <td>Email</td>
+                            <td>Role</td>
                             <td>Date of Birth</td>
                             <td>Notes</td>
                             <td>Action</td>
@@ -51,12 +52,13 @@
                                 <tr>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
+                                    <td>{{ $user->is_admin === 1 ? 'Admin' : 'User' }}</td>
                                     <td>{{ $user->dob }}</td>
                                     <td>{{ $user->notes }}</td>
                                     <td>
-                                        <a href="{{ route("users.edit", ["id" => $user->id ]) }}" class="text-decoration-none me-2">Edit</a>
+                                        <a href="{{ route("admin.users.edit", ["id" => $user->id ]) }}" class="text-decoration-none me-2">Edit</a>
                                         
-                                        <form action="{{ route("users.delete", ['id' => $user->id ]) }}" method="post" class="d-inline">
+                                        <form action="{{ route("admin.users.delete", ['id' => $user->id ]) }}" method="post" class="d-inline">
                                             @csrf
                                             @method('delete')
                                             <a href="javascript:void(0)" class="text-decoration-none delete-post">Delete</a>    

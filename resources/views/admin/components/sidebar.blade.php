@@ -8,39 +8,21 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('users.index') }}">
+                <a class="nav-link" href="{{ route('admin.users.index') }}">
                     <span data-feather="shopping-cart" class="align-text-bottom"></span>
                     Users
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">
-                    <span data-feather="file" class="align-text-bottom"></span>
-                    Orders
+                    <span data-feather="file-text" class="align-text-bottom"></span>
+                    Posts
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">
-                    <span data-feather="shopping-cart" class="align-text-bottom"></span>
-                    Products
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <span data-feather="users" class="align-text-bottom"></span>
-                    Customers
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <span data-feather="bar-chart-2" class="align-text-bottom"></span>
-                    Reports
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <span data-feather="layers" class="align-text-bottom"></span>
-                    Integrations
+                    <span data-feather="file-text" class="align-text-bottom"></span>
+                    Pages
                 </a>
             </li>
         </ul>

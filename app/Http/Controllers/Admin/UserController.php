@@ -56,7 +56,7 @@ class UserController extends Controller
             'password'  => Hash::make($request->password)
         ])->id;
 
-        return redirect()->route('users.edit', $new_user_id)->with('success', 'New user added !');
+        return redirect()->route('admin.users.edit', $new_user_id)->with('success', 'New user added !');
 
     }
 
@@ -91,7 +91,7 @@ class UserController extends Controller
             'password'  => Hash::make($request->password)
         ]);
 
-        return redirect()->route('users.edit', $id)->with('success', 'User updated !');
+        return redirect()->route('admin.users.edit', $id)->with('success', 'User updated !');
     }
 
     /**
@@ -104,7 +104,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
 
-        return redirect()->route('users.index')->with('success', 'User deleted!');
+        return redirect()->route('admin.users.index')->with('success', 'User deleted!');
     }
 
 }

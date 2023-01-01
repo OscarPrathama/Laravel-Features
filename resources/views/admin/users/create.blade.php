@@ -11,14 +11,14 @@
     <div class="row">
         <div class="col-12 div col-md-4 mb-3">
             <h3>Add user</h3>
-            <a href="{{ route("users.index") }}" class="text-decoration-none">Back to users</a>
+            <a href="{{ route('admin.users.index') }}" class="text-decoration-none">Back to users</a>
         </div>
     </div>
 
 
     <div class="row">
         <div class="col-12 div col-md-4">
-            <form action="{{ route("users.store") }}" method="post">
+            <form action="{{ route('admin.users.store') }}" method="post">
                 
                 @csrf
                 
