@@ -22,6 +22,7 @@ class User extends Authenticatable
         'email',
         'notes',
         'dob',
+        'is_admin',
         'password',
     ];
 

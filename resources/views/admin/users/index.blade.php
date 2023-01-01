@@ -1,29 +1,32 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('title')
     {{ $title ?? "Default" }}
 @endsection
 
 @section('content')
-    <div class="container mt-3 mb-5">
-        
-        {{-- header --}}
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-8 col-lg-10">
-                <h3>{{ __('Users management') }}</h3>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 class="h2">Users Management</h1>
             </div>
         </div>
+    </div>
+
+
+    <div class="container mt-3 mb-5">
         
         {{-- action --}}
         <div class="row justify-content-center">
-            <div class="col-12 col-md-8 col-lg-10 mb-2">
+            <div class="col-12 col-md-12 mb-2">
                 <a href="{{ route("users.create") }}" class="btn btn-primary">{{ __('Add new') }}</a>
             </div>
         </div>
 
         {{-- table --}}
         <div class="row justify-content-center">
-            <div class="col-12 col-md-8 col-lg-10">
+            <div class="col-12 col-md-12">
                 @if (session('success'))
                     <div class="text-success mb-1 float-start">{{ session('success') }}</div>
                 @endif
@@ -33,7 +36,7 @@
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-12 col-md-8 col-lg-10">
+            <div class="col-12 col-md-12">
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover table-striped">
                         <tr>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('title')
     {{ $title ?? "Edit User" }}
@@ -8,16 +8,16 @@
 <div class="container mt-4 mb-5">
     
     {{-- heading --}}
-    <div class="row justify-content-center">
-        <div class="col-12 div col-md-6 col-lg-4 mb-3">
+    <div class="row">
+        <div class="col-12 div col-md-4 mb-3">
             <h3>Edit user</h3>
             <a href="{{ route("users.index") }}" class="text-decoration-none">Back to users</a>
         </div>
     </div>
 
 
-    <div class="row justify-content-center">
-        <div class="col-12 div col-md-6 col-lg-4">
+    <div class="row">
+        <div class="col-12 div col-md-4">
             <form action="{{ route("users.update", ['id' => $user->id]) }}" method="POST">
                 
                 @csrf
