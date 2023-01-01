@@ -20,10 +20,17 @@
                         </div>
                     </div>
 
-
                     {{-- email --}}
                     <div class="mb-3">
                         <input type="email" name="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" placeholder="john@gmail.com"  autofocus>
+                        <div class="invalid-feedback">
+                            @error('email') {{ $message }} @enderror
+                        </div>
+                    </div>
+
+                    {{-- dob --}}
+                    <div class="mb-3">
+                        <input type="date" name="dob" value="{{ old('dob') }}" class="form-control @error('dob') is-invalid @enderror">
                         <div class="invalid-feedback">
                             @error('email') {{ $message }} @enderror
                         </div>

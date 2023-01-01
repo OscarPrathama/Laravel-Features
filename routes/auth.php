@@ -57,8 +57,8 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
 
+                
     // Dashboard section
-
     Route::get('/admin/dashboard', function () {
         return view('admin.dashboard');
     })->middleware(['auth', 'verified'])->name('admin.dashboard');
