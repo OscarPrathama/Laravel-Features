@@ -19,7 +19,7 @@
         {{-- action --}}
         <div class="row justify-content-center">
             <div class="col-12 col-md-12 mb-2">
-                <a href="{{ route('admin.reservation.create') }}" class="btn btn-primary">{{ __('Add new') }}</a>
+                <a href="{{ route('admin.reservations.create') }}" class="btn btn-primary">{{ __('Add new') }}</a>
             </div>
         </div>
 

@@ -2,31 +2,31 @@
     <div class="position-sticky pt-3 sidebar-sticky">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{{ route('admin.dashboard') }}">
+                <a class="nav-link {{ isRoute('admin.dashboard') ? 'active' : '' }}" aria-current="page" href="{{ route('admin.dashboard') }}">
                     <span data-feather="home" class="align-text-bottom"></span>
                     Dashboard
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route("admin.categories.index") }}">
+                <a class="nav-link {{ isRoute('admin.categories.index') ? 'active' : '' }}" href="{{ route("admin.categories.index") }}">
                     <span data-feather="file-text" class="align-text-bottom"></span>
                     Categories
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route("admin.menus.index") }}">
+                <a class="nav-link {{ isRoute('admin.menus.index') ? 'active' : '' }}" href="{{ route("admin.menus.index") }}">
                     <span data-feather="file-text" class="align-text-bottom"></span>
                     Menu
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route("admin.tables.index") }}">
+                <a class="nav-link {{ isRoute('admin.tables.index') ? 'active' : '' }}" href="{{ route("admin.tables.index") }}">
                     <span data-feather="file-text" class="align-text-bottom"></span>
                     Table
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route("admin.reservation.index") }}">
+                <a class="nav-link {{ isRoute('admin.reservations.index') ? 'active' : '' }}" href="{{ route("admin.reservations.index") }}">
                     <span data-feather="file-text" class="align-text-bottom"></span>
                     Reservation
                 </a>
@@ -41,7 +41,7 @@
         </h6>
         <ul class="nav flex-column mb-2">
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.users.index') }}">
+                <a class="nav-link {{ isRoute('admin.users.index') ? 'active' : '' }}" href="{{ route('admin.users.index') }}">
                     <span data-feather="shopping-cart" class="align-text-bottom"></span>
                     Users
                 </a>
