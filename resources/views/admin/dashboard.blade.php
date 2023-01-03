@@ -1,5 +1,9 @@
 @extends('admin.layouts.app')
 
+@section('title')
+    {{ $title ?? 'Dashboard' }}
+@endsection
+
 @section('content')
 
 <div class="container">

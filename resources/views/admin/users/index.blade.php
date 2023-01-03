@@ -84,13 +84,13 @@
 @endsection
 
 @push('script')
-    <script>
-        $(function(){
-            $('a.delete-post').on('click', function(){
-                if(confirm('Delete it ?')){
-                    $(this).parents('form').submit();
-                }
-            });
-        })
-    </script>
+<script>
+    $(function(){
+        $('a.delete-post').on('click', function(){
+            if(confirm('Delete it ?')){
+                $(this).parents('form').submit();
+            }
+        });
+    })
+</script>
 @endpush

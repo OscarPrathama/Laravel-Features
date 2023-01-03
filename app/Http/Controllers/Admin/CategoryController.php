@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -38,9 +39,17 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        //
+        $image = $request->file('category_image')->store('public/categories');
+
+        Category::create([
+            'name' => $request->category_name,
+            'image' => $image,
+            'description' => $request->category_description,
+        ]);
+
+        return redirect()->route('admin.categories.index')->with('success', 'New category added !');
     }
 
     /**
@@ -60,9 +69,11 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+        $title = 'Edit category';
+        
+        return view('admin.categories.edit', compact('category', 'title'));
     }
 
     /**
