@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exceptions\UserNotFoundException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UserRequest;
 use App\Models\User;
+use ErrorException;
+use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
@@ -67,9 +71,14 @@ class UserController extends Controller
      * @return  View
     */
     public function edit(int $id){
-        $data['user'] = User::findOrFail($id);
+        
+        try {
+            $user = User::findOrFail($id);
+        } catch (Exception $e) {
+            return view('admin.errors.404', ['message' => "User with id {$id} not found !"]);
+        }
 
-        return view('admin.users.edit', $data);
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
@@ -81,7 +90,13 @@ class UserController extends Controller
     */
     public function update(UserRequest $request, int $id){
 
-        $user = User::findOrFail($id);
+        $user = User::find($id);
+
+        try {
+            $user = User::findOrFail($id);
+        } catch (Exception $e) {
+            return view('admin.errors.404', ['message' => "User with id {$id} not found !"]);
+        }
         
         $user->update([
             'name'      => $request->name,
@@ -101,7 +116,13 @@ class UserController extends Controller
      * @return  void
     */
     public function destroy(int $id){
-        $user = User::findOrFail($id);
+        
+        try {
+            $user = User::findOrFail($id);
+        } catch (Exception $e) {
+            return view('admin.errors.404', ['message' => "User with id {$id} not found !"]);
+        }
+
         $user->delete();
 
         return redirect()->route('admin.users.index')->with('success', 'User deleted!');
