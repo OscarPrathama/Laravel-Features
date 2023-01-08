@@ -5,6 +5,8 @@
 - debugbar              (done)
 - event listener        (done)
 - logging               (done)
+- otp                   (progress)
+  - send to wa
 - role permissions
 - backup
 - seo

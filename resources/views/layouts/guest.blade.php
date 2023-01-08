@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>@yield('title')</title>
 
         {{-- Bootstrap --}}
         <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.css') }}">
@@ -29,6 +29,7 @@
         <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.js') }}"></script>
 
         {{-- other script --}}
+        @stack('script')        
 
     </body>
 </html>
