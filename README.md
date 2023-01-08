@@ -7,6 +7,7 @@
 - logging               (done)
 - otp                   (progress)
   - send to wa
+  - ref : https://dev.to/shanisingh03/how-to-login-with-otp-in-laravel-9--3mmp
 - role permissions
 - backup
 - seo
