@@ -50,7 +50,7 @@
                                 <tr>
                                     <td>{{ $category->name }}</td>
                                     <td>{{ $category->description }}</td>
-                                    <td class="d-flex justify-content-center">
+                                    <td>
                                         <div class="img-wrapper">
                                             <img src="{{ Storage::url($category->image) }}" alt="{{ $category->name }}" class="w-100">
                                         </div>

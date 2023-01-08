@@ -11,13 +11,15 @@ use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\View;
 
 class UserController extends Controller
 {
     
-
+    
     /**
      * Users view
      * 
@@ -28,6 +30,8 @@ class UserController extends Controller
         $data['users'] = User::latest()
             -> paginate(10)
             -> onEachSide(1);
+
+        Log::info("Get all users, ", ['user' => Auth::user()->id]);
 
         return view('admin.users.index', $data);
     }
@@ -60,6 +64,8 @@ class UserController extends Controller
             'password'  => Hash::make($request->password)
         ])->id;
 
+        Log::info("User created", ['user' => Auth::user()->id]);
+
         return redirect()->route('admin.users.edit', $new_user_id)->with('success', 'New user added !');
 
     }
@@ -74,6 +80,7 @@ class UserController extends Controller
         
         try {
             $user = User::findOrFail($id);
+            Log::info("Get user by id, ", ["user" => Auth::user()->id]);
         } catch (Exception $e) {
             return view('admin.errors.404', ['message' => "User with id {$id} not found !"]);
         }
@@ -94,6 +101,7 @@ class UserController extends Controller
 
         try {
             $user = User::findOrFail($id);
+            Log::info("Update user {$id}", ['user' => Auth::user()->id]);
         } catch (Exception $e) {
             return view('admin.errors.404', ['message' => "User with id {$id} not found !"]);
         }
@@ -119,6 +127,7 @@ class UserController extends Controller
         
         try {
             $user = User::findOrFail($id);
+            Log::info("Delete user with id {$id}", ['user' => Auth::user()->id]);
         } catch (Exception $e) {
             return view('admin.errors.404', ['message' => "User with id {$id} not found !"]);
         }

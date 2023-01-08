@@ -3,12 +3,15 @@
 
 ## Features
 - debugbar              (done)
+- event listener        (done)
+- logging               (done)
+- otp                   (progress)
+  - send to wa
+  - ref : https://dev.to/shanisingh03/how-to-login-with-otp-in-laravel-9--3mmp
 - role permissions
 - backup
 - seo
 - telescope
-- logging
-- event listener
 - 
 
 ## Laravel Rule

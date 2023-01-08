@@ -1,12 +1,16 @@
 @extends('layouts.guest')
 
+@section('title')
+    {{ $title ?? "Register" }}
+@endsection
+
 @section('content')
-    <div class="container register-wrapper my-5 p-3 mb-2">
+    <div class="container register-wrapper my-3 p-3 mb-2">
         <div class="row justify-content-center">
             <div class="register-col col-10 col-md-4 col-lg-4">
 
                 {{-- heading --}}
-                <h1 class="text-center mb-5">Register</h1>
+                <h1 class="text-center mb-3">Register</h1>
 
                 {{-- form --}}
                 <form action="{{ route('register') }}" method="POST">
@@ -20,9 +24,17 @@
                         </div>
                     </div>
 
+                    {{-- phone --}}
+                    <div class="mb-3">
+                        <input type="number" name="phone" value="{{ old('phone') }}" class="form-control @error('phone') is-invalid @enderror" placeholder="081288223344">
+                        <div class="invalid-feedback">
+                            @error('phone') {{ $message }} @enderror
+                        </div>
+                    </div>
+
                     {{-- email --}}
                     <div class="mb-3">
-                        <input type="email" name="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" placeholder="john@gmail.com"  autofocus>
+                        <input type="email" name="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" placeholder="john@gmail.com">
                         <div class="invalid-feedback">
                             @error('email') {{ $message }} @enderror
                         </div>

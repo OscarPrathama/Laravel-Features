@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\UserLoginHistory;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
@@ -28,9 +29,17 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
+
         $request->authenticate();
 
         $request->session()->regenerate();
+
+        $user = [
+            'name' => auth()->user()->name,
+            'email' => auth()->user()->email
+        ];
+
+        UserLoginHistory::dispatch( (object) $user);
 
         return redirect()->intended(RouteServiceProvider::DASHBOARD);
     }

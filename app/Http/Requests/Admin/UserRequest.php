@@ -28,6 +28,7 @@ class UserRequest extends FormRequest
 
         return[
             'name'      => 'required|min:3|max:50',
+            'phone'     => 'required|numeric|min:10',
             'notes'     => '',
             'dob'       => 'required|date',
         ] + ($this->isMethod('POST') ? $this->store() : $this->update() );

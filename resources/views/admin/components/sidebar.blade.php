@@ -39,13 +39,17 @@
                 <span data-feather="plus-circle" class="align-text-bottom"></span>
             </a>
         </h6>
-        <ul class="nav flex-column mb-2">
-            <li class="nav-item">
-                <a class="nav-link {{ isRoute('admin.users.index') ? 'active' : '' }}" href="{{ route('admin.users.index') }}">
-                    <span data-feather="shopping-cart" class="align-text-bottom"></span>
-                    Users
-                </a>
-            </li>
-        </ul>
+
+        @if (auth()->user()->is_admin === 1)
+            <ul class="nav flex-column mb-2">
+                <li class="nav-item">
+                    <a class="nav-link {{ isRoute('admin.users.index') ? 'active' : '' }}" href="{{ route('admin.users.index') }}">
+                        <span data-feather="shopping-cart" class="align-text-bottom"></span>
+                        Users
+                    </a>
+                </li>
+            </ul>
+        @endif
+
     </div>
 </nav>
