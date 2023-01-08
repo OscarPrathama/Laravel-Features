@@ -3,12 +3,12 @@
 
 ## Features
 - debugbar              (done)
+- event listener        (done)
+- logging               (done)
 - role permissions
 - backup
 - seo
 - telescope
-- logging
-- event listener
 - 
 
 ## Laravel Rule

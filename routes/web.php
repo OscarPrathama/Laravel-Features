@@ -16,7 +16,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
+Route::middleware('auth')->name('admin.')->prefix('admin')->group(function(){
+    Route::resource('/categories', CategoryController::class);
+    Route::resource('/menus', MenuController::class);
+    Route::resource('/tables', TableController::class);
+    Route::resource('/reservations', ReservationController::class); 
 });
 
 Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(function(){
@@ -27,10 +33,6 @@ Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(fun
     Route::patch('/users/update/{id}', [UserController::class, 'update'])->name('users.update');
     Route::delete('/users/delete/{id}', [UserController::class, 'destroy'])->name('users.delete');
 
-    Route::resource('/categories', CategoryController::class);
-    Route::resource('/menus', MenuController::class);
-    Route::resource('/tables', TableController::class);
-    Route::resource('/reservations', ReservationController::class);
 });
 
 require __DIR__.'/auth.php';
